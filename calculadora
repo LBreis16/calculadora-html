@@ -1,16 +1,113 @@
-# Calculadora Simples
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora Simples</title>
+  <style>
+    body {
+      background-color: #f4f4f4;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-Projeto criado no início da minha jornada em programação. Desenvolvido em HTML, CSS e JavaScript usando apenas o Bloco de Notas.
+    .calculadora {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ccc;
+      width: 250px;
+    }
 
-## Funcionalidades
-- Operações básicas: soma, subtração, multiplicação e divisão
-- Interface simples e intuitiva
+    #resultado {
+      width: 100%;
+      height: 40px;
+      margin-bottom: 10px;
+      text-align: right;
+      padding: 10px;
+      font-size: 18px;
+      border: 1px solid #ccc;
+    }
 
-## Tecnologias
-- HTML5
-- CSS3
-- JavaScript puro
+    .botoes {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
 
-## Status do Projeto
-🚧 Em desenvolvimento | Pretendo melhorar o layout e adicionar novos recursos.
+    button {
+      padding: 15px;
+      font-size: 16px;
+      border: none;
+      background: #007bff;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
 
+    button:hover {
+      background: #0056b3;
+    }
+
+    .igual {
+      grid-column: span 2;
+      background-color: #28a745;
+    }
+
+    .limpar {
+      background-color: #dc3545;
+    }
+  </style>
+</head>
+<body>
+
+<div class="calculadora">
+  <input type="text" id="resultado" readonly>
+  <div class="botoes">
+    <button onclick="inserir('7')">7</button>
+    <button onclick="inserir('8')">8</button>
+    <button onclick="inserir('9')">9</button>
+    <button onclick="inserir('/')">÷</button>
+
+    <button onclick="inserir('4')">4</button>
+    <button onclick="inserir('5')">5</button>
+    <button onclick="inserir('6')">6</button>
+    <button onclick="inserir('*')">×</button>
+
+    <button onclick="inserir('1')">1</button>
+    <button onclick="inserir('2')">2</button>
+    <button onclick="inserir('3')">3</button>
+    <button onclick="inserir('-')">−</button>
+
+    <button onclick="inserir('0')">0</button>
+    <button onclick="inserir('.')">.</button>
+    <button onclick="calcular()" class="igual">=</button>
+    <button onclick="inserir('+')">+</button>
+
+    <button onclick="limpar()" class="limpar">C</button>
+  </div>
+</div>
+
+<script>
+  function inserir(valor) {
+    document.getElementById('resultado').value += valor;
+  }
+
+  function limpar() {
+    document.getElementById('resultado').value = '';
+  }
+
+  function calcular() {
+    try {
+      let resultado = eval(document.getElementById('resultado').value);
+      document.getElementById('resultado').value = resultado;
+    } catch (e) {
+      document.getElementById('resultado').value = 'Erro';
+    }
+  }
+</script>
+
+</body>
+</html>
